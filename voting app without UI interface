@@ -1,0 +1,70 @@
+#this is a simple voter app without UI interace
+print("welcome to voter app")
+
+#taking name of candidates 
+candidate1=input("enter 1st candidate name :")
+candidate2=input("enter 2nd candidate name :")
+
+cand1_votes=0
+cand2_votes=0
+
+#list for voters
+voters_id=[101,102,103,104,105,106]
+no_of_voters=len(voters_id)
+
+#printing the total votes
+print("number of voters :",no_of_voters)
+
+#list for voted ones
+voted=[]
+
+#starting while loop
+while True:
+
+# if the voters id is zero then this part will run 
+    if voters_id==[]:
+        print("voting is over")
+        if cand1_votes>cand2_votes:
+            print(f"{candidate1} won the election with {cand1_votes} votes")
+        elif cand2_votes>cand1_votes:
+            print(f"{candidate2} won the election with {cand2_votes} votes")
+        elif cand1_votes==cand2_votes:
+            print("tied!!")
+        break;
+
+
+    #this part is taking input from the cadidates who wanted to vote and they have their id's    
+    else:
+        voter=int(input("enter your id :"))
+
+
+        if voter in voted:
+            print("you already voted")
+
+        #printing the name of the candidates and taking vote from the users
+        else:
+            if voter in voters_id:
+                print(f"1. {candidate1} / 2. {candidate2}")
+                choice=int(input("enter your choice :"))
+
+        #if choice is 1 then the votes goes to the first one and after the increment in the candidate1 vote
+                if choice==1:
+                    cand1_votes+=1
+                    print(f"you voted {candidate1}")
+        
+        #if choice is 2 then the votes goes to the second one and after the increment in the candidate2 vote
+                elif choice==2:
+                    cand2_votes+=1
+                    print(f"you voted {candidate2}")
+        
+        #from voter_id(list) i am removing the id's who have voted and then these id's are added into a new list called voted[] due to avoid multiple voting from one id
+                voters_id.remove(voter)
+                voted.append(voter)
+        
+        #in case a person who have voted ones, he can't able to vote
+            else:
+                print("you are not allowed to vote!")
+
+
+
+
