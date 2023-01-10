@@ -1,0 +1,51 @@
+while True:
+    from pytube import YouTube
+
+    print("1.audio")
+    print("2.video")
+    print("3.thumbnail of the video")
+    print("4.or you want to see actual views of the video")
+    print("5.exit")
+
+    inp = int(input("choose one of the following "))
+
+    if inp==5:
+        print("good byee!!")
+        break
+
+    link = input("enter the youtube link : ")
+    yt=YouTube(link)
+    print()
+    print(yt.title)
+    print()
+
+    if inp==3:
+        th = yt.thumbnail_url
+        print("here is your thumbnail ctrl+click :",th)
+
+    elif inp==4:
+        vi=yt.views
+        print("here is you output :",vi)
+    
+    elif inp==2:
+        vid = yt.streams.filter(only_video=True)
+        vod = list(enumerate(vid))
+        for i in vod:
+            print(i)
+        print()
+        strm = int(input("enter the index : "))
+
+        vid[strm].download()
+        print("download is successful")
+
+    elif inp==1:
+        vid = yt.streams.filter(only_audio=True)
+
+        vod = list(enumerate(vid))
+        for i in vod:
+            print(i)
+        print()
+        strm = int(input("enter the index : "))
+
+        vid[strm].download()
+        print("download is successful")
